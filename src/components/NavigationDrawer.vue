@@ -1,6 +1,6 @@
 <template>
   <div class="ma-12 pa-12">
-    <v-card>
+    <v-card v-if="display">
       <v-navigation-drawer
         permanent
         expand-on-hover
@@ -52,3 +52,18 @@
     </v-card>
   </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            display: false
+        }
+    },
+    created() {
+        if (localStorage.getItem("token")) {
+            this.display = true;
+        }
+    }
+}
+</script>
