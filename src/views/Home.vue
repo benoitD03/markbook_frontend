@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <hello-world />
+    <h1>Livres Terminés</h1>
   </v-container>
 </template>
 
