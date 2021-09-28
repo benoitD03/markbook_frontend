@@ -27,6 +27,7 @@
               >
                 <v-text-field
                   label="Titre"
+                  v-model="book.title"
                   required
                 ></v-text-field>
               </v-col>
@@ -36,20 +37,24 @@
               >
                 <v-text-field
                   label="Auteur"
+                  v-model="book.author"
+                  required
                 ></v-text-field>
               </v-col>
               
               <v-col cols="12">
                 <v-text-field
                   label="URL de l'image"
+                  v-model="book.imageUrl"
                   required
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field
+                <v-textarea
                   label="Idées principales"
+                  v-model="book.comment"
                   hint="Ce champs n'est évidemment pas nécessaire pour les livres de votre wish list"
-                ></v-text-field>
+                ></v-textarea>
               </v-col>
               <v-col
                 cols="12"
@@ -57,7 +62,7 @@
                 md="4"
               >
                 <v-checkbox
-                    v-model="checkbox"
+                    v-model="book.finish"
                     label="Livre terminé"
                 ></v-checkbox>
               </v-col>
@@ -67,7 +72,7 @@
                 md="4"
               >
                 <v-checkbox
-                    v-model="checkbox"
+                    v-model="book.isBeingRead"
                     label="Livre en cours"
                 ></v-checkbox>
               </v-col>
@@ -77,7 +82,7 @@
                 md="4"
               >
                 <v-checkbox
-                    v-model="checkbox"
+                    v-model="book.wish"
                     label="Liste d'envie"
                 ></v-checkbox>
               </v-col>
@@ -97,7 +102,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="dialog = false"
+            @click="createBook"
           >
             Ajouter
           </v-btn>
@@ -110,10 +115,47 @@
 </template>
 
 <script>
+import axios from 'axios';
+import VueJwtDecode from 'vue-jwt-decode';
 export default {
     data: () => ({
       dialog: false,
+      user: null,
+      book: {
+          title : "",
+          author: "",
+          comment: "",
+          imageUrl: "",
+          finish: false,
+          wish: false,
+          isBeingRead: false
+      }
     }),
+    methods: {
+        createBook() {
+            this.token = this.$store.state.token;
+            this.user = VueJwtDecode.decode(this.token);
+            const formResult = {
+                    title : this.book.title,
+                    author: this.book.author,
+                    comment: this.book.comment,
+                    imageUrl: this.book.imageUrl,
+                    finish: this.book.finish,
+                    wish: this.book.wish,
+                    isBeingRead: this.book.isBeingRead
+            }
+                axios.post(this.$store.state.baseUrlBooks, formResult , {
+                    headers: {
+                        Authorization: "Bearer "  + this.token,
+                    },
+                })
+                .then(response => {
+                    console.log(response);
+                    this.dialog = false;
+                })
+                .catch(error => console.log(error));
+        }
+    }
 };
 </script>
 
