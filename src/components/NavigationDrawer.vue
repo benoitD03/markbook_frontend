@@ -70,12 +70,14 @@
             <v-list-item-title>Les MarkBookeurs</v-list-item-title>
           </v-list-item>
 
-          <v-list-item link class="deconnexion">
-            <v-list-item-icon>
-              <v-img style="width:25px; height: 25px;" src="../assets/logo.png"></v-img>
-            </v-list-item-icon>
-            <v-list-item-title>Se déconnecter</v-list-item-title>
-          </v-list-item>
+          <!-- <router-link to="/" @click="removeToken">   -->
+            <v-list-item link class="deconnexion" @click="logOut">
+                <v-list-item-icon>
+                <v-img style="width:25px; height: 25px;" src="../assets/logo.png"></v-img>
+                </v-list-item-icon>
+                <v-list-item-title>Se déconnecter</v-list-item-title>
+            </v-list-item>
+          <!-- </router-link> -->
 
         </v-list>
       </v-navigation-drawer>
@@ -85,7 +87,6 @@
 
 <script>
 
-import axios from 'axios';
 import CreateBook from '../components/CreateBook'
 export default {
     components: {
@@ -94,25 +95,25 @@ export default {
     data() {
         return {
             display: false,
-            myProfil : []
         }
     },
     created() {
         if (localStorage.getItem("token")) {
             this.display = true;
-            this.token = this.$store.state.token;
-            
-            axios.get(`${this.$store.state.baseUrlUsers}/me`, {
-                headers: { Authorization: "Bearer " + this.token}
-            })
-            .then(response => {
-                console.log(response.data);
-                this.myProfil = response.data;
-            })
-            .catch(error => console.log(error));
-        }
-        
+            this.$store.dispatch("getMyProfil")
+        }  
     },
+    computed: {
+        myProfil() {
+            return this.$store.state.myProfil;
+        }
+    },
+    methods: {
+        logOut() {
+            localStorage.removeItem("token");
+            window.location.href="/"
+        }
+    }
 }
 </script>
 

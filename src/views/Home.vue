@@ -3,14 +3,14 @@
     <hello-world />
     <h1>Livres Terminés</h1>
 
-    <div v-for="book in books.books" :key="book.id">
+    <div v-for="book in books" :key="book.id">
     <v-card
     class="mx-auto"
     max-width="344"
     outlined
     v-if="book.finish"
   >
-    <v-list-item three-line v-if="book.finish">
+    <v-list-item three-line>
       <v-list-item-content>
         <div class="text-overline mb-4">
           OVERLINE
@@ -47,29 +47,18 @@
 
 <script>
 import HelloWorld from "../components/HelloWorld";
-import VueJwtDecode from 'vue-jwt-decode'
-import axios from 'axios';
 export default {
   name: "Home",
   components: {
     HelloWorld,
   },
-  data() {
-    return {
-      books : []
-    }
-  },
   created() {
-    this.token = localStorage.getItem("token");
-          VueJwtDecode.decode(this.token)
-          axios.get(this.$store.state.baseUrlBooks, {
-              headers: { Authorization: "Bearer " + this.token}
-          })
-          .then(response => {
-              this.books = response.data
-              console.log(this.books)
-          })
-          .catch(error => console.log(error));
+    this.$store.dispatch("getBooks")
+  },
+  computed: {
+    books() {
+      return this.$store.state.books;
+    }
   }
 };
 </script>
