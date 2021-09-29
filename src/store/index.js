@@ -24,6 +24,10 @@ export default new Vuex.Store({
     MODIFY_BOOK(state, book) {
       state.books = [book,...state.books]
     },
+    DELETE_BOOK(state, book) {
+      const index = state.books.findIndex(item => item._id === book._id);
+      state.books = state.books.splice(state.books[index], 1);
+    },
     GET_MY_PROFIL(state, profil) {
       state.myProfil = profil;
     }
@@ -64,6 +68,17 @@ export default new Vuex.Store({
         })
         .catch((error) => console.log(error));
 
+    },
+
+    deleteBook({ commit }, id) {
+   
+              axios.delete(`http://localhost:3000/api/books/one/${id}`, {
+                  headers: { Authorization: "Bearer " + localStorage.getItem("token") }
+              })
+              .then(response => {
+                  commit("DELETE_BOOK", response.data);
+              })
+              .catch(error => console.log(error));
     },
 
     modifyBook({ commit }, book) {

@@ -45,6 +45,9 @@
       </v-dialog>
       <v-btn v-if="book.isBeingRead" @click="isBeingReadToFinish()">Livre terminé</v-btn>
       <v-btn v-if="book.wish" @click="wishToIsBeingRead()">Livre possédé</v-btn>
+      <v-btn color="red lighten-2" medium @click="deleteBook()">
+        <v-icon>mdi-delete</v-icon>
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -105,6 +108,22 @@ export default {
     modify() {
         this.$store.dispatch("modifyBook", this.oneBook);
         window.location.reload();
+    },
+    deleteBook() {
+      const confirmation = confirm("Êtes vous sûr de vouloir supprimer ce livre ?")
+          if (confirmation){
+            //   this.token = localStorage.getItem("token");
+            //   axios.delete('http://localhost:3000/api/books/one/' + id, {
+            //       headers: { Authorization: "Bearer " + this.token }
+            //   })
+            //   .then(response => {
+            //       console.log(response.data);
+            //       window.location.reload();
+            //   })
+            //   .catch(error => console.log(error));
+            this.$store.dispatch("deleteBook", this.book._id);
+            window.location.reload();
+          }
     }
   },
   computed: {
