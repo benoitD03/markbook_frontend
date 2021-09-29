@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-list-item link v-bind="attrs" v-on="on" class="my-3 ml-3">
           <v-list-item-icon>
@@ -115,8 +115,9 @@ export default {
       };
         this.$store.dispatch("createBook", formResult)
         this.dialog = false;
-    },
-  },
+        window.location.reload();
+    }
+  }
 };
 </script>
 
