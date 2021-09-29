@@ -5,7 +5,6 @@
         permanent
         expand-on-hover   
         app
-        dark
       >
         <v-list class="menu-list">
           <v-list-item class="px-2">
@@ -118,9 +117,6 @@ export default {
 </script>
 
 <style scoped>
-.title {
-    color: #f1f1f1;
-}
 .deconnexion {
     position: absolute;
     bottom: 15px;
