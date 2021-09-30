@@ -6,6 +6,7 @@ import Home from "../views/Home.vue";
 import InProgressBooks from "../views/InProgressBooks";
 import WishList from "../views/WishList";
 import AllUsers from '../views/AllUsers';
+import OneUser from '../views/OneUser';
 
 
 Vue.use(VueRouter);
@@ -40,6 +41,11 @@ const routes = [
     path: "/markbookeurs",
     name: "AllUsers",
     component: AllUsers,
+  },
+  {
+    path: "/markbookeur",
+    name: "OneUser",
+    component: OneUser,
   },
   
 ];

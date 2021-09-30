@@ -112,15 +112,6 @@ export default {
     deleteBook() {
       const confirmation = confirm("Êtes vous sûr de vouloir supprimer ce livre ?")
           if (confirmation){
-            //   this.token = localStorage.getItem("token");
-            //   axios.delete('http://localhost:3000/api/books/one/' + id, {
-            //       headers: { Authorization: "Bearer " + this.token }
-            //   })
-            //   .then(response => {
-            //       console.log(response.data);
-            //       window.location.reload();
-            //   })
-            //   .catch(error => console.log(error));
             this.$store.dispatch("deleteBook", this.book._id);
             window.location.reload();
           }

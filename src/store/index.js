@@ -9,6 +9,8 @@ export default new Vuex.Store({
     books: [],
     oneBook: [],
     myProfil: [],
+    users: [],
+    oneUser: [],
     baseUrlBooks: "http://localhost:3000/api/books"
   },
   mutations: {
@@ -33,7 +35,13 @@ export default new Vuex.Store({
     },
     MODIFY_PROFIL(state, profil) {
       state.myProfil = profil
-    }
+    },
+    GET_ALL_USERS(state, allUsers) {
+      state.users = allUsers;
+    },
+    GET_ONE_USER(state, user) {
+      state.oneUser = user;
+    },
   },
   actions: {
     
@@ -60,6 +68,7 @@ export default new Vuex.Store({
       .catch(error => console.log(error))
 
     },
+
     createBook({ commit }, book) {
 
       axios.post("http://localhost:3000/api/books", book, {
@@ -122,6 +131,29 @@ export default new Vuex.Store({
           })
           .catch(error => console.log(error));
 
-    }
+    },
+
+    getAllUsers({ commit }) {
+
+      axios.get('http://localhost:3000/api/users/all', {
+              headers: { Authorization: "Bearer " + localStorage.getItem("token")}
+          })
+          .then(response => {
+              commit("GET_ALL_USERS", response.data)
+          })
+          .catch(error => console.log(error));
+    },
+
+    getOneUser({ commit }, id) {
+
+      axios.get(`http://localhost:3000/api/users/one/${id}`, {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token")}
+      })
+      .then(response => {
+        commit("GET_ONE_USER", response.data);
+      })
+      .catch(error => console.log(error))
+
+    },
   }
 });
