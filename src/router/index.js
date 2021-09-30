@@ -5,6 +5,7 @@ import Signup from "../views/Signup"
 import Home from "../views/Home.vue";
 import InProgressBooks from "../views/InProgressBooks";
 import WishList from "../views/WishList";
+import AllUsers from '../views/AllUsers';
 
 
 Vue.use(VueRouter);
@@ -34,6 +35,11 @@ const routes = [
     path: "/wishlist",
     name: "WishList",
     component: WishList,
+  },
+  {
+    path: "/markbookeurs",
+    name: "AllUsers",
+    component: AllUsers,
   },
   
 ];

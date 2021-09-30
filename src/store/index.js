@@ -30,6 +30,9 @@ export default new Vuex.Store({
     },
     GET_MY_PROFIL(state, profil) {
       state.myProfil = profil;
+    },
+    MODIFY_PROFIL(state, profil) {
+      state.myProfil = profil
     }
   },
   actions: {
@@ -104,6 +107,20 @@ export default new Vuex.Store({
         commit("GET_MY_PROFIL", response.data)
       })
       .catch(error => console.log(error));
+
+    },
+
+    modifyProfil({ commit }, profil) {
+
+      axios.put('http://localhost:3000/api/users/me', profil, {
+              headers: { Authorization: "Bearer " + localStorage.getItem("token"),
+                },    
+          })
+          .then(response => {
+            console.log(response);
+              commit("MODIFY_PROFIL", profil)
+          })
+          .catch(error => console.log(error));
 
     }
   }

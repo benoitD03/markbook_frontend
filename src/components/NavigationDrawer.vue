@@ -13,14 +13,7 @@
             </v-list-item-avatar>
           </v-list-item>
 
-          <v-list-item link>
-            <v-list-item-content>
-              <v-list-item-title class="text-h6">
-                {{ myProfil.pseudo }}
-              </v-list-item-title>
-              <v-list-item-subtitle>{{ myProfil.email }}</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
+          <MyProfil :myProfil="myProfil"/>
         </v-list>
 
         <v-divider></v-divider>
@@ -62,21 +55,21 @@
 
           <v-divider></v-divider>
 
+          <router-link to="/markbookeurs">
           <v-list-item link class="mt-2">
             <v-list-item-icon>
-              <v-img style="width:25px; height: 25px;" src="../assets/logo.png"></v-img>
+              <img style="width:25px; height: 25px;" src="../assets/logo.png">
             </v-list-item-icon>
             <v-list-item-title>Les MarkBookeurs</v-list-item-title>
           </v-list-item>
+          </router-link>
 
-          <!-- <router-link to="/" @click="removeToken">   -->
             <v-list-item link class="deconnexion" @click="logOut">
                 <v-list-item-icon>
                 <v-img style="width:25px; height: 25px;" src="../assets/logo.png"></v-img>
                 </v-list-item-icon>
                 <v-list-item-title>Se déconnecter</v-list-item-title>
             </v-list-item>
-          <!-- </router-link> -->
 
         </v-list>
       </v-navigation-drawer>
@@ -87,9 +80,11 @@
 <script>
 
 import CreateBook from '../components/CreateBook'
+import MyProfil from '../components/MyProfil'
 export default {
     components: {
-        CreateBook
+        CreateBook,
+        MyProfil
     },
     data() {
         return {
