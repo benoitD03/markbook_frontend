@@ -131,6 +131,6 @@ a {
 }
 .v-card {
   width: 37px;
-  background: #1fa1f1;
+  background: #1c76d2;
 }
 </style>

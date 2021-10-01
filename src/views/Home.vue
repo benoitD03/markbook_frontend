@@ -1,7 +1,6 @@
 <template>
   <v-container>
-    <hello-world />
-    <h1>Livres Terminés</h1>
+    <h1 class="text-center text-primary">MES LIVRES TERMINÉS</h1>
     
     <div class="text-center my-5">
       <input
@@ -11,7 +10,7 @@
         placeholder="Rechercher un titre, un auteur..."
         autocomplete="off"
       />
-      <span v-if="searchKey && filteredBooks.length >= 1" class="ml-2">
+      <span v-if="searchKey && filteredBooks.length >= 1" class="ml-2 text-primary">
         {{ filteredBooks.length }} Résultat<span v-if="filteredBooks.length >= 2"
           >s</span
         >
@@ -26,12 +25,10 @@
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld";
 import BookCard from "../components/BookCard"
 export default {
   name: "Home",
   components: {
-    HelloWorld,
     BookCard
   },
   data() {
@@ -65,6 +62,6 @@ export default {
 }
 #search:focus {
   outline: none;
-  border: 2px solid cadetblue;
+  border: 2px solid #1c76d2;
 }
 </style>

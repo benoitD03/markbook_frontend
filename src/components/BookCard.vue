@@ -1,23 +1,38 @@
 <template>
-  <v-card class="mx-auto" max-width="344" outlined>
-    <v-list-item three-line>
-      <v-list-item-content>
-        <v-list-item-title class="text-h5 mb-1">
-          {{ book.title }}
-        </v-list-item-title>
-        <v-list-item-subtitle>{{ book.comment }}</v-list-item-subtitle>
-      </v-list-item-content>
+ 
+<v-card
+    class="mx-auto my-12 book-card"
+    max-width="60%"
+    elevation="5"
+  >
+  <div>
+    <v-img style="width:100%; height: 50px;" src="../assets/bibliotheque.jpg"></v-img>
+  </div>
+  <v-card-title class="justify-center mt-2">{{ book.title }}</v-card-title>
+  <div class="d-flex justify-center">
+    <img class="mt-3" :src="book.imageUrl">
+  </div>
 
-      <v-list-item-avatar tile size="80" color="grey">
-        <v-img :src="book.imageUrl"></v-img>
-      </v-list-item-avatar>
-    </v-list-item>
+    
 
-    <v-card-actions>
+    <v-card-text class="text-center">
+    
+      <div class="my-4 text-subtitle-1">
+        <b>Auteur : </b> {{ book.author }}
+      </div>
+
+      <div v-if="book.comment">{{ book.comment }}</div>
+      <div v-if="(book.finish || book.isBeingRead) && !book.comment">Vous n'avez pas encore rédigé de commentaire sur ce livre</div>
+    </v-card-text>
+
+    <v-divider color="#1c76d2" class="mx-4"></v-divider>
+
+    <v-card-actions class="actions my-3 pb-5">
       <v-dialog v-model="dialog" persistent max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
-            color="red lighten-2"
+            class="button"
+            color="primary"
             dark
             v-bind="attrs"
             v-on="on"
@@ -43,13 +58,14 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-btn v-if="book.isBeingRead" @click="isBeingReadToFinish()">Livre terminé</v-btn>
-      <v-btn v-if="book.wish" @click="wishToIsBeingRead()">Livre possédé</v-btn>
-      <v-btn color="red lighten-2" medium @click="deleteBook()">
-        <v-icon>mdi-delete</v-icon>
+      <v-btn class="button" color="primary" v-if="book.isBeingRead" @click="isBeingReadToFinish()">Livre terminé</v-btn>
+      <v-btn class="button" color="primary" v-if="book.wish" @click="wishToIsBeingRead()">Livre commencé</v-btn>
+      <v-btn class="button" color="red lighten-2" medium @click="deleteBook()">
+        <v-icon class="text-light">mdi-delete</v-icon>
       </v-btn>
     </v-card-actions>
   </v-card>
+
 </template>
 
 <script>
@@ -125,5 +141,32 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+img {
+  width: 230px;
+  height: 320px;
+}
+.header {
+  width: 100%;
+  height: 50px;
+  background: #1c76d2;
+}
+h2 {
+  width: 100%;
+}
+.container {
+  display: flex;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+@media all and (max-width: 1024px) {
+  .actions {
+    flex-direction: column;
+  }
+  .button {
+    margin-bottom: 10px;
+  }
+}
 </style>

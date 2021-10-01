@@ -28,4 +28,7 @@ export default {
 .text-light {
   color: #f9f9f9 !important;
 }
+.text-primary {
+  color: #1c76d2 !important;
+}
 </style>

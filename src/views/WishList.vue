@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Liste d'envie</h1>
+    <h1 class="text-center text-primary">LISTE D'ENVIE</h1>
 
     <div v-for="book in books" :key="book.id">
       <BookCard :book="book" v-if="book.wish" />
