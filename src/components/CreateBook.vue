@@ -2,14 +2,11 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" max-width="600px">
       <template v-slot:activator="{ on, attrs }">
-        <v-list-item link v-bind="attrs" v-on="on" class="my-3 ml-3">
-          <v-list-item-icon>
-            <v-img
-              style="width: 25px; height: 25px"
-              src="../assets/logo.png"
-            ></v-img>
+        <v-list-item link v-bind="attrs" v-on="on" class="mt-3 mb-7 ml-3">
+          <v-list-item-icon class="align-center">
+            <span class="mdi mdi-24px mdi-comment-edit text-light"></span>
           </v-list-item-icon>
-          <v-list-item-title>Ajouter un livre</v-list-item-title>
+          <v-list-item-title class="text-light">Ajouter un livre</v-list-item-title>
         </v-list-item>
       </template>
       <v-card>

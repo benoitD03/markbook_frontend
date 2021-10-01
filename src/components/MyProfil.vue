@@ -4,10 +4,10 @@
       <template v-slot:activator="{ on, attrs }">
         <v-list-item link v-bind="attrs" v-on="on" class="my-3 ml-3 text-content">
           <v-list-item-content>
-            <v-list-item-title class="text-h6">
+            <v-list-item-title class="text-h6 text-light">
               {{ myProfil.pseudo }}
             </v-list-item-title>
-            <v-list-item-subtitle>Mes informations</v-list-item-subtitle>
+            <v-list-item-subtitle class="text-light">Mes informations</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </template>

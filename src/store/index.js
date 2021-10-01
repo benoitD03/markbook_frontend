@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     books: [],
     oneBook: [],
+    otherUserBooks: [],
     myProfil: [],
     users: [],
     oneUser: [],
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     },
     GET_ONE_BOOK(state, book) {
       state.oneBook = book;
+    },
+    GET_OTHER_USER_BOOKS(state, allBooks) {
+      state.otherUserBooks = allBooks;
     },
     CREATE_BOOK(state, book) {
       state.books = [book, ...state.books]
@@ -64,6 +68,18 @@ export default new Vuex.Store({
       })
       .then(response => {
         commit("GET_ONE_BOOK", response.data);
+      })
+      .catch(error => console.log(error))
+
+    },
+
+    getOtherUserBooks({ commit }, id) {
+
+      axios.get(`http://localhost:3000/api/books/other/${id}`, {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token")}
+      })
+      .then(response => {
+        commit("GET_OTHER_USER_BOOKS", response.data.books);
       })
       .catch(error => console.log(error))
 

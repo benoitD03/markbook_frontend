@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <NavigationDrawer/>
-    <v-main>
+    <v-main class="main">
       <router-view />
     </v-main>
   </v-app>
@@ -20,3 +20,12 @@ export default {
   }),
 };
 </script>
+
+<style>
+.main {
+  background: #f9f9f9;
+}
+.text-light {
+  color: #f9f9f9 !important;
+}
+</style>

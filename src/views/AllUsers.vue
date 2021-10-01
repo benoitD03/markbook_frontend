@@ -46,6 +46,7 @@ created() {
   methods: {
       getOneUser(id) {
           this.$store.dispatch("getOneUser", id);
+          this.$store.dispatch("getOtherUserBooks", id);
       }
   }
 }
