@@ -1,12 +1,11 @@
 <template>
  
 <v-card
-    class="mx-auto my-12 book-card"
-    max-width="60%"
+    class="mx-auto my-12 book-card" 
     elevation="5"
   >
   <div>
-    <v-img style="width:100%; height: 50px;" src="../assets/bibliotheque.jpg"></v-img>
+    <v-img class="header" src="../assets/bibliotheque.jpg"></v-img>
   </div>
   <v-card-title class="justify-center mt-2">{{ book.title }}</v-card-title>
   <div class="d-flex justify-center">
@@ -42,8 +41,8 @@
           </v-btn>
         </template>
         <v-card>
-          <v-card-title>
-            <span class="text-h5">Modifier ce livre</span>
+          <v-card-title style="background: #1c76d2" >
+            <span class="text-h5 text-light text-center">Modifier ce livre</span>
           </v-card-title>
           <v-card-text>
             <ModifyBook :oneBook="oneBook" />
@@ -148,14 +147,17 @@ img {
 }
 .header {
   width: 100%;
-  height: 50px;
-  background: #1c76d2;
+  filter: grayscale(.5);
+  height: 80px;
 }
 h2 {
   width: 100%;
 }
 .container {
   display: flex;
+}
+.book-card {
+  max-width: 60%;
 }
 .actions {
   display: flex;
@@ -167,6 +169,12 @@ h2 {
   }
   .button {
     margin-bottom: 10px;
+  }
+  .header {
+    height: 50px;
+  }
+  .book-card {
+    max-width: 90%;
   }
 }
 </style>

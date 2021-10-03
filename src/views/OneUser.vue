@@ -1,45 +1,52 @@
 <template>
+<div>
+  <div>
+    <Stats :books="books"/>
+  </div>
   <v-container>
-
+    
     <div>
       <h1 class="text-center">{{ user.pseudo }}</h1>
       <div class="text-center my-10">
         <img :src="user.image" :alt="user.pseudo" />
       </div>
     </div>
-
+    <v-divider></v-divider>
     <h2 class="text-center my-10">
-      Les 3 derniers livres lus par {{ user.pseudo }}
+      Les 5 derniers livres lus par {{ user.pseudo }}
     </h2>
-    <div class="my-10">
-      <v-row class="mx-auto">
-        <v-col
-          cols="6"
-          sm="4"
-          v-for="bookFinish in threeFinishedBooksList"
-          :key="bookFinish._id"
-          class="image"
-        >
-          <v-img :src="bookFinish.imageUrl" class="image"></v-img>
-          <h4 class="mb-15"> {{ bookFinish.title }}</h4>
-        </v-col>
-      </v-row>
+    <div class="d-flex book-container">
+      <div
+        v-for="bookFinish in threeFinishedBooksList"
+        :key="bookFinish._id"
+        class="finish-container"
+      >
+        <v-img :src="bookFinish.imageUrl" class="image mb-15"></v-img>
+      </div>
     </div>
-    <div>
-        <h2 class="text-center my-10">Sa liste d'envie</h2>
-        <div v-for="book in books" :key="book._id">
-            <v-img v-if="book.wish" :src="book.imageUrl" class="image"></v-img>
+    <v-divider></v-divider>
+    
+      <h2 class="text-center my-10">Sa liste d'envie</h2>
+      <div class="d-flex book-container mb-15">
+        <div v-for="bookWish in wishedBooks" :key="bookWish._id" class="finish-container">
+          <v-img :src="bookWish.imageUrl" class="image"></v-img>
         </div>
-    </div>
+      </div>
   </v-container>
+  </div>
 </template>
 
 <script>
+import Stats from "../components/Stats"
 export default {
   data() {
     return {
       finishedBooks: [],
+      wishBooks: []
     };
+  },
+  components: {
+    Stats
   },
   computed: {
     user() {
@@ -54,24 +61,43 @@ export default {
           this.finishedBooks.push(book);
         }
       });
-      return this.finishedBooks.slice(-3);
+      return this.finishedBooks.slice(-5);
+    },
+    wishedBooks() {
+      this.books.forEach((book) => {
+        if (book.wish) {
+          this.wishBooks.push(book);
+        }
+      });
+      return this.wishBooks;
     },
   },
   beforeDestroy() {
-      this.finishedBooks = [];
-      window.location.reload();
-    },
+    this.finishedBooks = [];
+    window.location.reload();
+  },
 };
 </script>
 
 <style scoped>
+.header {
+  filter: grayscale(.5);
+}
 img {
   width: 300px;
   height: 300px;
-  border-radius: 50%;
+  border-radius: 30px;
 }
 .image {
   height: 200px;
   width: 150px;
 }
+.book-container {
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.finish-container {
+  width: 160px;
+}
+
 </style>

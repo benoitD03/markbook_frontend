@@ -1,7 +1,8 @@
 <template>
 <v-container>
-    <h1>Bienvenue sur MarkBook</h1>
-    <h2>Inscription</h2>
+    <h1 class="text-center text-primary my-10">Bienvenue sur MarkBook</h1>
+    <v-card class="pa-10 mx-auto form-card" elevation="5">
+    <h2 class="text-center text-primary">Inscription</h2>
   <v-form
     ref="form"
     lazy-validation
@@ -31,7 +32,7 @@
     <span class="errorForm" v-if="!$v.pseudo.minLength && $v.pseudo.$dirty">Votre pseudo doit contenir au moins {{ $v.pseudo.$params.minLength.min }} caractères</span><br>
 
     <v-btn
-      color="success"
+      color="primary"
       class="mt-4"
       @click.prevent="signup"
     >
@@ -39,6 +40,7 @@
     </v-btn>
   </v-form>
   <p class="mt-3">Vous êtes déja incrit ? <router-link to="/">Connexion</router-link></p>
+  </v-card>
 </v-container>
 </template>
 
@@ -89,8 +91,16 @@ methods: {
 }
 </script>
 
-<style scoped>
+<style>
 .errorForm {
     color: crimson;
+}
+.form-card {
+  width: 75%;
+}
+@media all and (max-width: 767px) {
+  .form-card {
+  width: 95%;
+}
 }
 </style>

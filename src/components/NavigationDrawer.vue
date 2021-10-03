@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-8" style="background: #f9f9f9;">
+  <div class="pa-5" style="background: #f9f9f9;">
     <v-card v-if="display">
       <v-navigation-drawer
         :permanent="$vuetify.breakpoint.smAndUp"

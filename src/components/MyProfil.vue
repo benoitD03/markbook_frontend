@@ -12,8 +12,8 @@
         </v-list-item>
       </template>
       <v-card>
-        <v-card-title>
-          <span class="text-h5">Mes informations</span>
+        <v-card-title style="background:#1c76d2;">
+          <span class="text-h5 text-light">Mes informations</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -38,7 +38,12 @@
                 <v-btn color="primary" class="modifyImage py-8"
                   ><span class="mdi mdi-24px mdi-cog-transfer" @click="displayFileInput"></span
                 ></v-btn>
-                <input v-if="fileInput" id="uploadImage" type="file" ref="image" @change="uploadImage">
+                <div v-if="fileInput" class="input-container">
+                  <button class="btn-upload">
+                    <span class="mdi mdi-24px mdi-download-box-outline text-primary my-auto"></span> Choisir une image
+                  </button>
+                  <input id="uploadImage" type="file" ref="image" @change="uploadImage">
+                </div>
               </div>
             </v-row>
           </v-container>
@@ -112,5 +117,30 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.input-container {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+.input-container input[type=file] {
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom:0;
+  opacity: 0;
+  position: absolute;
+  font-size: 90px;
+  cursor: pointer;
+}
+.btn-upload {
+  background-color: #fff;
+  border: 3px solid #000;
+  color: #1c76d2;
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  
 }
 </style>

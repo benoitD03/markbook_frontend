@@ -10,8 +10,8 @@
         </v-list-item>
       </template>
       <v-card>
-        <v-card-title>
-          <span class="text-h5">Ajouter un nouveau livre</span>
+        <v-card-title style="background: #1c76d2;">
+          <span class="text-h5 text-light text-center">Ajouter un nouveau livre</span>
         </v-card-title>
         <v-card-text>
           <v-container>

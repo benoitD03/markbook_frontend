@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1 class="text-center">Les MarkBookeurs</h1>
+  <h1 class="text-center text-primary">LES MARKBOOKEURS</h1>
   <div class="text-center my-15">
       <input
         v-model="searchKey"
@@ -15,7 +15,7 @@
         <img :src="user.image" :alt="user.pseudo">
         <h2>{{ user.pseudo }}</h2>
         <router-link to="/markbookeur">
-        <v-btn color="primary" @click="getOneUser(user._id)"><span class="mdi mdi-arrow-right-bold"></span></v-btn>
+        <v-btn class="button" color="primary" @click="getOneUser(user._id)"><span class="mdi mdi-arrow-right-bold"></span></v-btn>
         </router-link>
       </div>
       <v-divider class="divider mx-auto"></v-divider>
@@ -61,7 +61,7 @@ created() {
     margin: 20px auto;
 }
 img {
-    widows: 100px;
+    width: 100px;
     height: 100px;
     border-radius: 50%;
 }
@@ -78,5 +78,18 @@ img {
 #search:focus {
   outline: none;
   border: 2px solid cadetblue;
+}
+@media all and (max-width: 1024px) {
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .user-container {
+    width: 75%;
+  }
+  .divider {
+    width: 75%;
+}
 }
 </style>

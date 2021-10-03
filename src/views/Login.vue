@@ -1,7 +1,8 @@
 <template>
 <v-container>
-    <h1>Bienvenue sur MarkBook</h1>
-    <h2>Connexion</h2>
+    <h1 class="text-center text-primary my-10">Bienvenue sur MarkBook</h1>
+    <v-card class="pa-10 mx-auto form-card" elevation="5">
+    <h2 class="text-center text-primary">Connexion</h2>
   <v-form
     ref="form"
     lazy-validation
@@ -22,7 +23,7 @@
     <span class="errorForm" v-if="!$v.password.required && $v.password.$dirty">Votre Mot de passe est requis</span><br>
 
     <v-btn
-      color="success"
+      color="primary"
       class="mt-4"
       @click.prevent="login"
     >
@@ -30,6 +31,7 @@
     </v-btn>
   </v-form>
   <p class="mt-3">Vous n'êtes pas encore incrit ? <router-link to="/signup">Inscription</router-link></p>
+    </v-card>
 </v-container>
 </template>
 
