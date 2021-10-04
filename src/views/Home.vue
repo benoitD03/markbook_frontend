@@ -1,7 +1,8 @@
 <template>
   <v-container>
+    <h1 class="text-primary text-center mb-5"><span class="mdi mdi-book-open-page-variant"></span> MARK<span>BOOK</span></h1>
     <Stats :books="books"  />
-    <h1 class="text-center text-primary my-10">MES LIVRES TERMINÉS</h1>
+    <h2 class="text-center my-10">MES LIVRES TERMINÉS</h2>
     
     <div class="text-center my-5">
       <input
@@ -70,5 +71,11 @@ export default {
 #search:focus {
   outline: none;
   border: 2px solid #1c76d2;
+}
+h1 {
+  font-size: 50px;
+}
+span {
+  color: #333;
 }
 </style>

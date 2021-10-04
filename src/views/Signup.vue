@@ -1,6 +1,6 @@
 <template>
 <v-container>
-    <h1 class="text-center text-primary my-10">Bienvenue sur MarkBook</h1>
+    <h1 class="text-center text-primary my-10">Bienvenue sur <span class="mdi mdi-book-open-page-variant"></span> MARK<span>BOOK</span></h1>
     <v-card class="pa-10 mx-auto form-card" elevation="5">
     <h2 class="text-center text-primary">Inscription</h2>
   <v-form
@@ -91,12 +91,15 @@ methods: {
 }
 </script>
 
-<style>
+<style scoped>
 .errorForm {
     color: crimson;
 }
 .form-card {
   width: 75%;
+}
+span {
+  color: #333;
 }
 @media all and (max-width: 767px) {
   .form-card {
