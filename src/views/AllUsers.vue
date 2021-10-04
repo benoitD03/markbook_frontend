@@ -77,7 +77,7 @@ img {
 }
 #search:focus {
   outline: none;
-  border: 2px solid cadetblue;
+  border: 2px solid #1c76d2;
 }
 @media all and (max-width: 1024px) {
   img {

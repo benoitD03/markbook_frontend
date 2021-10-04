@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <Stats :books="books"/>
-    <h1 class="text-center text-primary my-10">LISTE D'ENVIE</h1>
+    <h1 class="text-center text-primary my-10">LISTE D'ENVIES</h1>
 
     <div v-for="book in books" :key="book.id">
       <BookCard :book="book" v-if="book.wish" />

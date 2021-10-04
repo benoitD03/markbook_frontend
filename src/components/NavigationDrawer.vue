@@ -48,7 +48,7 @@
             <v-list-item-icon class="align-center">
               <span class="mdi mdi-24px mdi-comment-processing text-light"></span>
             </v-list-item-icon>
-            <v-list-item-title class="text-light">Ma liste d'envie</v-list-item-title>
+            <v-list-item-title class="text-light">Ma liste d'envies</v-list-item-title>
           </v-list-item>
           </router-link>
 

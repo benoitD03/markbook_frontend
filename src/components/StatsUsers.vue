@@ -53,7 +53,7 @@
             <v-card class="d-flex align-center" height="200">
               <v-list-item three-line>
                 <v-list-item-content>
-                  <div class="text-h4  my-5">Liste d'envie</div>
+                  <div class="text-h4  my-5">Liste d'envies</div>
                   <v-list-item-title class="text-h1 mb-1 text-primary">
                     {{ wishedBooksList.length }}
                   </v-list-item-title>

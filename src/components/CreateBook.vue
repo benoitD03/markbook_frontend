@@ -31,7 +31,7 @@
               <v-col cols="12" sm="4" md="4">
                 <v-checkbox
                   v-model="book.wish"
-                  label="Liste d'envie"
+                  label="Liste d'envies"
                 ></v-checkbox>
               </v-col>
               <v-col cols="12" sm="6">
