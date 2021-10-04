@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <h1 class="text-center text-primary">MES LIVRES TERMINÉS</h1>
+    <Stats :books="books"  />
+    <h1 class="text-center text-primary my-10">MES LIVRES TERMINÉS</h1>
     
     <div class="text-center my-5">
       <input
@@ -25,19 +26,25 @@
 </template>
 
 <script>
-import BookCard from "../components/BookCard"
+import BookCard from "../components/BookCard";
+import Stats from "../components/Stats"
 export default {
   name: "Home",
   components: {
-    BookCard
+    BookCard,
+    Stats
   },
   data() {
     return {
       searchKey: "",
+      finishedBooks: [],
+      wishedBooks: [],
+      isBeingReadBooks: []
     }
   },
   created() {
-    this.$store.dispatch("getBooks")
+    this.$store.dispatch("getBooks");
+
   },
   computed: {
     books() {

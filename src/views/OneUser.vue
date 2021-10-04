@@ -1,8 +1,5 @@
 <template>
 <div>
-  <div>
-    <Stats :books="books"/>
-  </div>
   <v-container>
     
     <div>
@@ -11,13 +8,16 @@
         <img :src="user.image" :alt="user.pseudo" />
       </div>
     </div>
+    <div>
+    <StatsUsers :books="books"/>
+  </div>
     <v-divider></v-divider>
     <h2 class="text-center my-10">
       Les 5 derniers livres lus par {{ user.pseudo }}
     </h2>
     <div class="d-flex book-container">
       <div
-        v-for="bookFinish in threeFinishedBooksList"
+        v-for="bookFinish in fiveFinishedBooksList"
         :key="bookFinish._id"
         class="finish-container"
       >
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Stats from "../components/Stats"
+import StatsUsers from "../components/StatsUsers"
 export default {
   data() {
     return {
@@ -46,7 +46,7 @@ export default {
     };
   },
   components: {
-    Stats
+   StatsUsers
   },
   computed: {
     user() {
@@ -55,7 +55,7 @@ export default {
     books() {
       return this.$store.state.otherUserBooks;
     },
-    threeFinishedBooksList() {
+    fiveFinishedBooksList() {
       this.books.forEach((book) => {
         if (book.finish) {
           this.finishedBooks.push(book);

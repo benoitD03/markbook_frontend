@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <h1 class="text-center text-primary">LIVRES EN COURS</h1>
+    <Stats :books="books"/>
+    <h1 class="text-center text-primary my-10">LIVRES EN COURS</h1>
     <div v-for="book in books" :key="book.id">
       <BookCard :book="book" v-if="book.isBeingRead" />
     </div>
@@ -9,10 +10,12 @@
 
 <script>
 import BookCard from '../components/BookCard'
+import Stats from '../components/Stats'
 export default {
   name: "InProgressBooks",
   components: {
-      BookCard
+      BookCard,
+      Stats
   },
   created() {
     this.$store.dispatch("getBooks");

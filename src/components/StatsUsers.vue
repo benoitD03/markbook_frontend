@@ -9,14 +9,18 @@
                 <v-list-item-content>
                   <div class="text-h4 my-5">Terminés</div>
                   <v-list-item-title class="text-h1 mb-1 text-primary">
-                    {{ finishedBooksList() }}
+                    {{ finishedBooksList.length }}
                   </v-list-item-title>
                 </v-list-item-content>
 
-                <v-list-item-avatar tile size="80">
-                  <span class="mdi mdi-48px mdi-bookshelf text-primary"></span>
+                <v-list-item-avatar
+                  tile
+                  size="80"
+                >
+                <span class="mdi mdi-48px mdi-bookshelf text-primary "></span>
                 </v-list-item-avatar>
               </v-list-item>
+
             </v-card>
           </v-item>
         </v-col>
@@ -26,18 +30,20 @@
             <v-card class="d-flex align-center" height="200">
               <v-list-item three-line>
                 <v-list-item-content>
-                  <div class="text-h4 my-5">En cours</div>
+                  <div class="text-h4  my-5">En cours</div>
                   <v-list-item-title class="text-h1 mb-1 text-primary">
-                    {{ isBeingReadBooksList() }}
+                    {{ isBeingReadBooksList.length }}
                   </v-list-item-title>
                 </v-list-item-content>
 
-                <v-list-item-avatar tile size="80">
-                  <span
-                    class="mdi mdi-48px mdi-book-open-page-variant text-primary"
-                  ></span>
+                <v-list-item-avatar
+                  tile
+                  size="80"
+                >
+                <span class="mdi mdi-48px mdi-book-open-page-variant text-primary"></span>
                 </v-list-item-avatar>
               </v-list-item>
+
             </v-card>
           </v-item>
         </v-col>
@@ -47,21 +53,24 @@
             <v-card class="d-flex align-center" height="200">
               <v-list-item three-line>
                 <v-list-item-content>
-                  <div class="text-h4 my-5">Liste d'envie</div>
+                  <div class="text-h4  my-5">Liste d'envie</div>
                   <v-list-item-title class="text-h1 mb-1 text-primary">
-                    {{ wishedBooksList() }}
+                    {{ wishedBooksList.length }}
                   </v-list-item-title>
                 </v-list-item-content>
 
-                <v-list-item-avatar tile size="80">
-                  <span
-                    class="mdi mdi-48px mdi-book-search text-primary"
-                  ></span>
+                <v-list-item-avatar
+                  tile
+                  size="80"
+                >
+                <span class="mdi mdi-48px mdi-book-search text-primary"></span>
                 </v-list-item-avatar>
               </v-list-item>
+
             </v-card>
           </v-item>
         </v-col>
+
       </v-row>
     </v-container>
   </v-item-group>
@@ -71,51 +80,40 @@
 export default {
   props: ["books"],
   data() {
-    return {
-      finishedBooks: [],
-      wishedBooks: [],
-      isBeingReadBooks: [],
-    };
-  },
-  methods: {
-    finishedBooksList() {
-      let finishCounter = 0;
-      for (let i = 0; i < this.books.length; i++) {
-        if (this.finishedBooks.includes(this.books[i])) {
-          finishCounter--;
-        }
-        if (this.books[i].finish) {
-          finishCounter++;
-        }
+      return {
+          finishedBooks: [],
+          wishedBooks: [],
+          isBeingReadBooks: []
       }
-      return finishCounter;
+  },
+  computed : {
+      finishedBooksList() {
+      this.books.forEach((book) => {
+        if (book.finish) {
+          this.finishedBooks.push(book);
+        }
+      });
+      console.log(this.finishedBooks);
+      return this.finishedBooks;
     },
     wishedBooksList() {
-      let wishCounter = 0;
-      for (let i = 0; i < this.books.length; i++) {
-        if (this.wishedBooks.includes(this.books[i])) {
-          wishCounter--;
+      this.books.forEach((book) => {
+        if (book.wish) {
+          this.wishedBooks.push(book);
         }
-        if (this.books[i].wish) {
-          wishCounter++;
-        }
-      }
-      return wishCounter;
+      });
+      return this.wishedBooks;
     },
     isBeingReadBooksList() {
-      let isBeingReadCounter = 0;
-      for (let i = 0; i < this.books.length; i++) {
-        if (this.isBeingReadBooks.includes(this.books[i])) {
-          isBeingReadCounter--;
+      this.books.forEach((book) => {
+        if (book.isBeingRead) {
+          this.isBeingReadBooks.push(book);
         }
-        if (this.books[i].isBeingRead) {
-          isBeingReadCounter++;
-        }
-      }
-      return isBeingReadCounter;
+      });
+      return this.isBeingReadBooks;
     },
   }
-};
+}
 </script>
 
 <style scoped>

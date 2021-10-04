@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <h1 class="text-center text-primary">LISTE D'ENVIE</h1>
+    <Stats :books="books"/>
+    <h1 class="text-center text-primary my-10">LISTE D'ENVIE</h1>
 
     <div v-for="book in books" :key="book.id">
       <BookCard :book="book" v-if="book.wish" />
@@ -10,10 +11,12 @@
 
 <script>
 import BookCard from '../components/BookCard'
+import Stats from '../components/Stats'
 export default {
   name: "WishList",
   components: {
-      BookCard
+      BookCard,
+      Stats
   },
   created() {
     this.$store.dispatch("getBooks");
